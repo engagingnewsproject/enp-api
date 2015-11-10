@@ -45,7 +45,9 @@ class Enp_API_Response {
             'success' => array('HTTP Response' => 200, 'Message' => 'Success'),
             'uanuthorized' => array('HTTP Response' => 401, 'Message' => 'Unauthorized'),
             'invalid-request' => array('HTTP Response' => 404, 'Message' => 'Invalid Request'),
-            'invalid-response' => array('HTTP Response' => 400, 'Message' => 'Invalid Response Format')
+            'invalid-response' => array('HTTP Response' => 400, 'Message' => 'Invalid Response Format'),
+            'mysql_insert_failure' => array('HTTP Response' => 404, 'Message' => 'Insert Error'),
+
         );
         return $api_response_code;
     }

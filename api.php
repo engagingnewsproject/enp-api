@@ -8,11 +8,11 @@ require 'Enp_API_Save_Class.php';
 $sentJSON = file_get_contents('php://input');
 $data= json_decode( $sentJSON, TRUE ); //convert JSON into array
 
-/* TESTING
-$sent = '';
+// TESTING
+/*$sent = array('site_url'=>'http://testurl');
 $sentJSON = json_encode($sent);
-$sentData= json_decode( $sentJSON, TRUE ); //convert JSON into array
-//var_dump($sentJSON);*/
+$data= json_decode( $sentJSON, TRUE ); //convert JSON into array
+var_dump($data);*/
 
 
 // Process the save
