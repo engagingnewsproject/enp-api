@@ -3,15 +3,12 @@
 
 class Enp_API_Response {
     public $response;
-    public $data;
 
     // Starter API template from: http://markroland.com/blog/restful-php-api/
 
-    public function __construct($sentData) {
+    public function __construct($save_status) {
 
-        $this->data = $sentData;
-
-        $this->response = $this->setResponse();
+        $this->response = $this->setResponse($save_status);
 
         $this->deliver_response();
     }
@@ -41,7 +38,7 @@ class Enp_API_Response {
         exit;
     }
 
-    protected function setResponseCode() {
+    protected function setResponseCodes() {
         // Define API response codes and their related HTTP response
         $api_response_code = array(
             'unknown' => array('HTTP Response' => 400, 'Message' => 'Unknown Error'),
@@ -54,22 +51,20 @@ class Enp_API_Response {
     }
 
 
-    protected function setResponse() {
-        $api_response_code = $this->setResponseCode();
+    protected function setResponse($save_status) {
+        $api_response_code = $this->setResponseCodes();
 
         // Set default HTTP response of
         $response['code'] = 0;
         $response['status'] = 404;
-        $response['data'] = NULL;
 
 
         // --- Process Request
 
 
-        $response['code'] = 'success';
-        $response['status'] = $api_response_code[ 'success' ]['HTTP Response'];
-        $response['message'] = $api_response_code[ 'success' ]['Message'];
-        $response['data'] = $this->data;
+        $response['code'] = $save_status;
+        $response['status'] = $api_response_code[ $save_status ]['HTTP Response'];
+        $response['message'] = $api_response_code[ $save_status ]['Message'];
 
         return $response;
     }
