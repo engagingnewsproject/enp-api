@@ -25,7 +25,13 @@ class Enp_API_Save {
             // No match was found, so let's insert the data
             $this->insertData();
         } else {
-            $this->updateData();
+            // check to see if the click count has changed
+            if($match['clicks'] === $this->data['clicks']) {
+                $this->response = 'no-changes';
+            } else {
+                // click has changed, so update the data
+                $this->updateData();
+            }
         }
 
     }
@@ -63,6 +69,9 @@ class Enp_API_Save {
 
     protected function updateData() {
         $pdo = db_connect();
+
+        // TODO: I can't find a way to just update the already found row.
+        //       For now, I'm finding the row again and updating it
 
         $params = array(':clicks'     => $this->data['clicks'],
                         ':updated'    => $this->data['updated'],

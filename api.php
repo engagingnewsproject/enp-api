@@ -12,7 +12,8 @@ $sentJSON = file_get_contents('php://input');
 $data= json_decode( $sentJSON, TRUE ); //convert JSON into array*/
 
 
-/* TESTING
+/*
+// TESTING
 $sent = array(
     "site_url"=> "http://dev/respect",
     "meta_id"=>  "13212",
