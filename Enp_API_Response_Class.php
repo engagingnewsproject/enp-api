@@ -43,12 +43,14 @@ class Enp_API_Response {
         $api_response_code = array(
             'unknown' => array('HTTP Response' => 400, 'Message' => 'Unknown Error'),
             'success' => array('HTTP Response' => 200, 'Message' => 'Success'),
+            'insert-success' => array('HTTP Response' => 200, 'Message' => 'Insert Success'),
+            'update-success' => array('HTTP Response' => 200, 'Message' => 'Update Success'),
             'uanuthorized' => array('HTTP Response' => 401, 'Message' => 'Unauthorized'),
             'invalid-request' => array('HTTP Response' => 404, 'Message' => 'Invalid Request'),
             'invalid-response' => array('HTTP Response' => 400, 'Message' => 'Invalid Response Format'),
-            'mysql_insert_failure' => array('HTTP Response' => 404, 'Message' => 'Insert Error'),
-            'no_site_url' => array('HTTP Response' => 404, 'Message' => 'No Site URL'),
-
+            'insert-failure' => array('HTTP Response' => 404, 'Message' => 'Insert Error'),
+            'update-failure' => array('HTTP Response' => 404, 'Message' => 'Update Error'),
+            'no-site-url' => array('HTTP Response' => 404, 'Message' => 'No Site URL'),
         );
         return $api_response_code;
     }

@@ -18,8 +18,16 @@ class Enp_API_Save {
         $this->data['updated'] = date("Y-m-d H:i:s");
         $this->data['created_at'] = date("Y-m-d H:i:s");
 
-        // save the data and set the response
-        $this->saveData();
+        // Check the database to see if we have a match
+        $match = $this->findMatch();
+
+        if($match === false) {
+            // No match was found, so let's insert the data
+            $this->insertData();
+        } else {
+            $this->updateData();
+        }
+
     }
 
     protected function setData() {
@@ -30,18 +38,62 @@ class Enp_API_Save {
     }
 
     protected function findMatch() {
-        $findMatch = db_prepare("SELECT * FROM button_data
-                                        WHERE meta_id = 2
+        $pdo = db_connect();
+
+        $stm = $pdo->prepare("SELECT * FROM button_data
+                                        WHERE site_url = :site_url
+                                        AND meta_id = :meta_id
+                                        AND post_id = :post_id
+                                        AND comment_id = :comment_id
                             ");
+
+        $params = array(':site_url'   => $this->data['site_url'],
+                        ':meta_id'    => $this->data['meta_id'],
+                        ':post_id'    => $this->data['post_id'],
+                        ':comment_id' => $this->data['comment_id']
+                        );
+
+        $stm->execute($params);
+
+        $findMatch = $stm->fetch(); // gets one row
+
+        return $findMatch;
+
     }
 
     protected function updateData() {
+        $pdo = db_connect();
 
+        $params = array(':clicks'     => $this->data['clicks'],
+                        ':updated'    => $this->data['updated'],
+                        ':site_url'   => $this->data['site_url'],
+                        ':meta_id'    => $this->data['meta_id'],
+                        ':post_id'    => $this->data['post_id'],
+                        ':comment_id' => $this->data['comment_id']
+                    );
+
+        $stm = $pdo->prepare("UPDATE button_data
+                                 SET clicks  = :clicks,
+                                     updated = :updated
+                               WHERE site_url = :site_url
+                                 AND meta_id = :meta_id
+                                 AND post_id = :post_id
+                                 AND comment_id = :comment_id
+                    ");
+
+        $update = $stm->execute($params);
+
+        if($update === false) {
+            $this->response = 'update-failure';
+        } else {
+            $this->response = 'update-success';
+        }
     }
 
-    protected function saveData() {
+
+
+    protected function insertData() {
         $pdo = db_connect();
-        //$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $params = array(':site_url'   => $this->data['site_url'],
                         ':meta_id'    => $this->data['meta_id'],
@@ -83,9 +135,9 @@ class Enp_API_Save {
         $insert = $stm->execute($params);
 
         if($insert === false) {
-            $this->response = 'insert_failure';
+            $this->response = 'insert-failure';
         } else {
-            $this->response = 'success';
+            $this->response = 'insert-success';
         }
 
     }
