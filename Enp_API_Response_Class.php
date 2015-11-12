@@ -1,6 +1,8 @@
 <?
-
-
+/*
+*   Passes response to our log
+*
+*/
 class Enp_API_Response {
     public $response;
 

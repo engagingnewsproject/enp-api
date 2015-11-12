@@ -1,6 +1,9 @@
 <?
 
-
+/*
+*   Saves passed data
+*
+*/
 class Enp_API_Save {
     private $data;
     public $response; // sends response code (ie - 'success', 'unauthorized', etc)
