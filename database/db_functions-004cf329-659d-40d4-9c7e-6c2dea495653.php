@@ -8,7 +8,7 @@ function db_connect() {
     // Try and connect to the database, if a connection has not been established yet
     if(!isset($connection)) {
         // Load configuration as an array. Use the actual location of your configuration file
-        $config = parse_ini_file('database_config.ini');
+        $config = parse_ini_file('database_config-4930dc35-7547-4449-9896-0d44d24a2423.ini');
         // $connection = mysqli_connect($config['host'],$config['username'],$config['password'],$config['dbname']);
         $pdo = new PDO("mysql:host=".$config['host'].";dbname=".$config['dbname'], $config['username'], $config['password']);
 
