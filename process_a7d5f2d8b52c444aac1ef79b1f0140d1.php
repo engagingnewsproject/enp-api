@@ -15,6 +15,6 @@ $data= json_decode( $sentJSON, TRUE ); //convert JSON into array*/
 // Process the save
 $apiSave = new Enp_API_Save($data);
 // Send the Save Response back to the requested site
-$apiResponse = new Enp_API_Response($apiSave->response);
+$apiResponse = new Enp_API_Response($apiSave->response, $data);
 
 ?>
