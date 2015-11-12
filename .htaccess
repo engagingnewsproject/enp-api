@@ -8,15 +8,8 @@ satisfy all
 # block access to indexes / file directory structure
 Options -Indexes
 
-# block access to our config file
-<files database_config-4930dc35-7547-4449-9896-0d44d24a2423.ini>
-order allow,deny
+# deny all files
 deny from all
-</files>
-
-# deny all files from all
-deny from all
-
 
 # enable just the files we need to let external connections access
 <Files api.php>
