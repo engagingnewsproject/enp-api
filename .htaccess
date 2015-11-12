@@ -1,0 +1,15 @@
+# block access to this .htaccess file
+<files ~ "^.*\.([Hh][Tt][Aa])">
+order allow,deny
+deny from all
+satisfy all
+</files>
+
+# block access to indexes / file directory structure
+Options -Indexes
+
+# block access to our config file
+<files database_config-4930dc35-7547-4449-9896-0d44d24a2423.ini>
+order allow,deny
+deny from all
+</files>
