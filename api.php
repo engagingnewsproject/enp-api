@@ -1,7 +1,7 @@
 <?php
 
 /*
-// TESTING
+// Only for TESTING
 $sent = array(
     "site_url"=> "http://dev/respect",
     "meta_id"=>  "13212",
