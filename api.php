@@ -42,7 +42,7 @@ $log_result = $result."\n";
 // Write the contents to the file,
 // using the FILE_APPEND flag to append the content to the end of the file
 // and the LOCK_EX flag to prevent anyone else writing to the file at the same time
-file_put_contents('log/log-e104c5b7-5ba5-4e14-94fe-0d31c6ccf0e1.log', $log_result, FILE_APPEND | LOCK_EX);
+file_put_contents('log/log-e104c5b7-5ba5-4e14-94fe-0d31c6ccf0e1.txt', $log_result, FILE_APPEND | LOCK_EX);
 
 
 ?>
