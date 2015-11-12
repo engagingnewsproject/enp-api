@@ -17,37 +17,14 @@ function db_connect() {
     // If connection was not successful, handle the error
     if($pdo === false) {
         // Handle error - notify administrator, log to a file, show an error screen, etc.
+        $log_result = 'no database connection';
+        // Write the contents to the file,
+        // using the FILE_APPEND flag to append the content to the end of the file
+        // and the LOCK_EX flag to prevent anyone else writing to the file at the same time
+        file_put_contents('../log/log-e104c5b7-5ba5-4e14-94fe-0d31c6ccf0e1.txt', $log_result, FILE_APPEND | LOCK_EX);
         return 'connection error';
     }
 
     return $pdo;
-}
-
-function db_query($query) {
-    // Connect to the database
-    $connection = db_connect();
-
-    // Query the database
-    $result = mysqli_query($connection,$query);
-
-    return $result;
-
-}
-
-function db_prepare($query, $params = array()) {
-    // Connect to the database
-    $pdo = db_connect();
-    $stm = $pdo->prepare($query);
-    $stm->execute($params);
-}
-
-function db_error() {
-    $connection = db_connect();
-    return mysqli_error($connection);
-}
-
-function db_quote($value) {
-    $connection = db_connect();
-    return "'" . mysqli_real_escape_string($connection,$value) . "'";
 }
 
