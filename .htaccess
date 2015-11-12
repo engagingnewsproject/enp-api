@@ -13,3 +13,20 @@ Options -Indexes
 order allow,deny
 deny from all
 </files>
+
+# deny all files from all
+deny from all
+
+
+# enable just the files we need to let external connections access
+<Files api.php>
+  Allow from all
+</Files>
+
+<Files process_a7d5f2d8b52c444aac1ef79b1f0140d1.php>
+  Allow from all
+</Files>
+
+<Files log-e104c5b7-5ba5-4e14-94fe-0d31c6ccf0e1.txt>
+  Allow from all
+</Files>
