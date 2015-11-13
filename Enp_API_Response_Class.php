@@ -5,13 +5,10 @@
 */
 class Enp_API_Response {
     public $response;
-    private $data;
 
     // Starter API template from: http://markroland.com/blog/restful-php-api/
 
-    public function __construct($save_status, $data) {
-
-        $this->data = $data;
+    public function __construct($save_status) {
 
         $this->response = $this->setResponse($save_status);
 
@@ -74,7 +71,6 @@ class Enp_API_Response {
         $response['code'] = $save_status;
         $response['status'] = $api_response_code[ $save_status ]['HTTP Response'];
         $response['message'] = $api_response_code[ $save_status ]['Message'];
-        $response['data'] = $this->data;
 
         return $response;
     }

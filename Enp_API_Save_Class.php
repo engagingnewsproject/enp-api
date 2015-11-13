@@ -17,10 +17,6 @@ class Enp_API_Save {
             return false;
         }
 
-        // setup the timestamp
-        $this->data['updated'] = date("Y-m-d H:i:s");
-        $this->data['created_at'] = date("Y-m-d H:i:s");
-
         // Check the database to see if we have a match
         $match = $this->findMatch();
 
@@ -116,7 +112,7 @@ class Enp_API_Save {
                         ':post_type'  => $this->data['post_type'],
                         ':button_url' => $this->data['button_url'],
                         ':updated'    => $this->data['updated'],
-                        ':created_at' => $this->data['created_at']
+                        ':created_at' => $this->data['updated'] // the same time as the update
                     );
 
         $stm = $pdo->prepare("INSERT INTO button_data (
