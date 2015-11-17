@@ -27,3 +27,7 @@ deny from all
 <Files errors.txt>
   Allow from all
 </Files>
+
+<Files display.php>
+  Allow from all
+</Files>
