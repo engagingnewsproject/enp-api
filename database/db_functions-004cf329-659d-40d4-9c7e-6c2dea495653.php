@@ -23,3 +23,4 @@ function db_connect() {
     return $pdo;
 }
 
+?>

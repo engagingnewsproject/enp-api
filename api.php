@@ -22,21 +22,15 @@ require 'Enp_API_Save_Class.php';
 $sentJSON = file_get_contents('php://input');
 $data= json_decode( $sentJSON, TRUE ); //convert JSON into array*/
 
-if(!empty($data['error'])) {
-    // we have an error, so log it.
-    $log_result = 'Error: ';
-    foreach($data as $key=>$value) {
-        $log_result .= $key.'['.$value.'],';
+try{
+    if(!empty($data['error'])) {
+        throw new Exception('Error sent from plugin.');
     }
-    // pop the last comma
-    $log_result = substr($log_result, 0, -1);
-    $log_result .= "\n";
-    // Write the contents to the file,
-    file_put_contents('error-log/errors.txt', $log_result, FILE_APPEND | LOCK_EX);
-    // go to sleep for 2 seconds
-    usleep(2000000);
-    die();
-} else {
+    if(filter_var($data['site_url'], FILTER_VALIDATE_URL) === false) {
+        throw new Exception('$data[site_url] is not a URL');
+    }
+
+    // no exceptions caught, so keep going
     require 'Enp_API_Response_Class.php';
     // append the timestamp
     $data['updated'] = date("Y-m-d H:i:s");
@@ -50,6 +44,10 @@ if(!empty($data['error'])) {
 
     // Send the Save Response back to the requested site
     $apiResponse = new Enp_API_Response($apiSave->response);
+
+} catch(Exception $e) {
+    require 'error_handling.php';
+    log_error($e->getMessage(), $data);
 }
 
 exit();

@@ -23,3 +23,7 @@ deny from all
 <Files log-e104c5b7-5ba5-4e14-94fe-0d31c6ccf0e1.txt>
   Allow from all
 </Files>
+
+<Files errors.txt>
+  Allow from all
+</Files>
