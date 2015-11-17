@@ -47,6 +47,7 @@ class Enp_API_Response {
             'success' => array('HTTP Response' => 200, 'Message' => 'Success'),
             'insert-success' => array('HTTP Response' => 200, 'Message' => 'Insert Success'),
             'update-success' => array('HTTP Response' => 200, 'Message' => 'Update Success'),
+            'logged-error' => array('HTTP Response' => 200, 'Message' => 'Logged Error'),
             'no-changes' => array('HTTP Response' => 200, 'Message' => 'No Changes'),
             'uanuthorized' => array('HTTP Response' => 401, 'Message' => 'Unauthorized'),
             'invalid-request' => array('HTTP Response' => 404, 'Message' => 'Invalid Request'),
