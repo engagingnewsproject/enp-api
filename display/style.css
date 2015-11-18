@@ -1,0 +1,85 @@
+body {
+    font-family: Tahoma, arial, sans-serif;
+    padding: 2em;
+    background: #eee;
+    color: #333;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 500;
+    margin: 0 0 .2em;
+}
+
+.masthead {
+    margin-bottom: 2em;
+}
+.masthead,
+.main {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40em;
+}
+
+.site-data {
+    background: #fff;
+    border-bottom: 2px solid #ccc;
+    padding: 1.6em 2em 2.6em;
+    margin-bottom: 3em;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    max-width: 35em;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: .9em;
+}
+
+th {
+    color: #666;
+    font-weight: 400;
+    text-align: left;
+    padding-bottom: .5em;
+    border-bottom: 1px solid #ddd;
+}
+
+td,
+th {
+    padding: .4em 2em .4em 1em;
+}
+
+tr:nth-child(odd) td {
+    background: #f8f8f8;
+}
+
+.site-url {
+    color: #666;
+    font-weight: 400;
+}
+
+.integer {
+    text-align: right;
+}
+
+.site-url {
+    margin: 1em 0 .2em;
+    font-size: 1em;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    font-size: .9em;
+}
+
+.chevron {
+    line-height: 0;
+    position: relative;
+    top: .07em;
+    font-size: 1.5em;
+}
+
+p {
+    margin: 0 0 1.2em;
+}
