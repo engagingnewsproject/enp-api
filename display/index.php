@@ -7,9 +7,16 @@
             error_reporting(E_ALL);
 
             require '../database/db_functions-004cf329-659d-40d4-9c7e-6c2dea495653.php';
+
             function displayTable($findMatches) {
 
                 $i = 0;
+                $query_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                if(strpos($query_link,'?') === false) {
+                    $query_link .= '?'; // set it up for a query
+                } else {
+                    $query_link .= '&'; // to append another query
+                }
                 foreach($findMatches as $row) {
                     if($i === 0) {
                         $table = '<h3 class="site-url"><a href="?site_url='.$row['site_url'].'">'.$row['site_url'].'</a></h3>
@@ -17,9 +24,9 @@
                              <table>
                                 <tbody>
                                     <thead>
-                                        <th>Button</th>
-                                        <th>Type</th>
-                                        <th class="integer">Clicks</th>
+                                        <th>Button <a href="'.$query_link.'orderby=button&order=ASC" class="up">&uparrow;</a><a href="'.$query_link.'orderby=button&order=DESC" class="down">&downarrow;</a></th>
+                                        <th>Type <a href="'.$query_link.'orderby=post_type&order=ASC" class="up">&uparrow;</a><a href="'.$query_link.'orderby=post_type&order=DESC" class="down">&downarrow;</a></th>
+                                        <th class="integer"><a href="'.$query_link.'orderby=clicks&order=ASC" class="up">&uparrow;</a><a href="'.$query_link.'orderby=clicks&order=DESC" class="down">&downarrow;</a> Clicks</th>
                                     </thead>';
                         $i++;
                     }
@@ -43,8 +50,21 @@
             function queryTable($site_url) {
                 $pdo = db_connect();
 
+                if(isset($_GET['orderby'])) {
+                    $orderby = $_GET['orderby'];
+                } else {
+                    $orderby = 'clicks';
+                }
+
+                if(isset($_GET['order'])) {
+                    $order = $_GET['order'];
+                } else {
+                    $order = 'DESC';
+                }
+
                 $stm = $pdo->prepare("SELECT * FROM button_data
                                             WHERE site_url = :site_url
+                                            ORDER BY $orderby $order
                                 ");
 
                 $params = array(':site_url'   => $site_url);
