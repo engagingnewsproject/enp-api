@@ -92,6 +92,33 @@ a:visited {
     font-size: .85em;
 }
 
+.icon-up,
+.icon-down {
+    width: 2em;
+    height: 2em;
+    fill: #57A76A;
+}
+
+.up,
+.down {
+    position: absolute;
+    right: 0;
+
+}
+
 .up {
-    margin-right: .2em;
+    top: -0.5em;
+}
+
+.down {
+    bottom: -1em;
+}
+
+.order-wrap {
+    position: relative;
+    left: 2.6em;
+}
+
+.integer .order-wrap {
+    left: 0;
 }

@@ -15,7 +15,13 @@
                 if(strpos($query_link,'?') === false) {
                     $query_link .= '?'; // set it up for a query
                 } else {
-                    $query_link .= '&'; // to append another query
+
+                    // check to see if orderby and order parameters are there. If so, remove them.
+                    $query_link = preg_replace("/(orderby=)\w*(&)/", "", $query_link);
+                    $query_link = preg_replace("/(order=)((ASC)|(DESC))/", "", $query_link);
+                    $query_link = preg_replace("/(&&)/", "&", $query_link);
+                    $query_link = str_replace("?&", "?", $query_link);
+                    $query_link = trim($query_link, "&");// trim & if at end of string
                 }
                 foreach($findMatches as $row) {
                     if($i === 0) {
@@ -24,9 +30,9 @@
                              <table>
                                 <tbody>
                                     <thead>
-                                        <th>Button <a href="'.$query_link.'orderby=button&order=ASC" class="up">&uparrow;</a><a href="'.$query_link.'orderby=button&order=DESC" class="down">&downarrow;</a></th>
-                                        <th>Type <a href="'.$query_link.'orderby=post_type&order=ASC" class="up">&uparrow;</a><a href="'.$query_link.'orderby=post_type&order=DESC" class="down">&downarrow;</a></th>
-                                        <th class="integer"><a href="'.$query_link.'orderby=clicks&order=ASC" class="up">&uparrow;</a><a href="'.$query_link.'orderby=clicks&order=DESC" class="down">&downarrow;</a> Clicks</th>
+                                        <th>Button <span class="order-wrap"><a href="'.$query_link.'&orderby=button&order=ASC" class="up"><svg class="icon-up"><use xlink:href="#icon-up"></use></svg></a><a href="'.$query_link.'&orderby=button&order=DESC" class="down"><svg class="icon-down"><use xlink:href="#icon-down"></use></svg></a></span></th>
+                                        <th>Type <span class="order-wrap"><a href="'.$query_link.'&orderby=post_type&order=ASC" class="up"><svg class="icon-up"><use xlink:href="#icon-up"></use></svg></a><a href="'.$query_link.'&orderby=post_type&order=DESC" class="down"><svg class="icon-down"><use xlink:href="#icon-down"></use></svg></a></span></th>
+                                        <th class="integer"><span class="order-wrap"><a href="'.$query_link.'&orderby=clicks&order=DESC" class="up"><svg class="icon-up"><use xlink:href="#icon-up"></use></svg></a><a href="'.$query_link.'&orderby=clicks&order=ASC" class="down"><svg class="icon-down"><use xlink:href="#icon-down"></use></svg></a></span> Clicks</th>
                                     </thead>';
                         $i++;
                     }
@@ -91,6 +97,16 @@
         <link rel='stylesheet' href='style.css' type='text/css' media='all' />
     </head>
     <body>
+        <? // svg icons ?>
+            <svg style="display: none;">
+                <symbol id="icon-up" viewBox="0 0 1024 1024">
+                    <path d="M495.488 398.464c-13.952 14.272-33.376 15.392-50.432 0l-125.056-119.904-125.056 119.904c-17.056 15.392-36.512 14.272-50.368 0-13.952-14.24-13.056-38.304 0-51.68 12.992-13.376 150.24-144.064 150.24-144.064 6.944-7.136 16.064-10.72 25.184-10.72s18.24 3.584 25.248 10.72c0 0 137.184 130.688 150.24 144.064 13.088 13.376 13.952 37.44 0 51.68z"></path>
+                </symbol>
+                <symbol id="icon-down" viewBox="0 0 1024 1024">
+                    <path d="M144.512 241.536c13.952-14.272 33.376-15.392 50.432 0l125.056 119.904 125.056-119.904c17.056-15.392 36.512-14.272 50.368 0 13.952 14.24 13.056 38.304 0 51.68-12.992 13.376-150.24 144.064-150.24 144.064-6.944 7.136-16.064 10.72-25.184 10.72s-18.24-3.584-25.248-10.72c0 0-137.184-130.688-150.24-144.064-13.088-13.376-13.952-37.44 0-51.68z"></path>
+                </symbol>
+            </svg>
+        <? // end svg ?>
         <header class="masthead">
             <h1>Engaging Button Data</h1>
             <? echo (isset($_GET['site_url']) ?  '<p class="hint"><a href="../display"><span class="chevron">&lsaquo;</span> Back to All Results</a></p>' : '');?>
