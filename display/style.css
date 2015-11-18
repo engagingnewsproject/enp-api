@@ -68,11 +68,6 @@ tr:nth-child(odd) td {
     font-size: 1em;
 }
 
-.breadcrumbs a {
-    text-decoration: none;
-    font-size: .9em;
-}
-
 .chevron {
     line-height: 0;
     position: relative;
@@ -82,4 +77,17 @@ tr:nth-child(odd) td {
 
 p {
     margin: 0 0 1.2em;
+}
+
+a {
+    color: #396BA7;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #800035;
+}
+
+.hint {
+    font-size: .85em;
 }

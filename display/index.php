@@ -73,7 +73,7 @@
     <body>
         <header class="masthead">
             <h1>Engaging Button Data</h1>
-            <? echo (isset($_GET['site_url']) ?  '<p class="breadcrumbs"><a href="../display"><span class="chevron">&lsaquo;</span> Back to All Results</a></p>' : '');?>
+            <? echo (isset($_GET['site_url']) ?  '<p class="hint"><a href="../display"><span class="chevron">&lsaquo;</span> Back to All Results</a></p>' : '');?>
         </header>
 
         <main class="main">
