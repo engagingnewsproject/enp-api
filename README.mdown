@@ -1,0 +1,11 @@
+### ENP API
+This is an API that receives and saves data from Engaging Buttons clicks on sites that have agreed to share their data with us.
+
+### Basic Functionality
+1. User clicks an Engaging Button
+2. Javascript code on their site opens a connection to our API and sends the necessary data.
+3. The API validates the data and, if valid, saves it.
+4. The API sends a JSON response to the site that opened the connection.
+
+### Roadmap
+Expand the API to be able to receive data from other Engaging News Project tools.
